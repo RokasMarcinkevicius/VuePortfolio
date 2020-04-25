@@ -1,3 +1,14 @@
+<!--
+to do:
+1.change grid from 1:10:1 to 2:8:2 (less sideways more highways)
+2.the pictures have to appear at the right side of the page vertically instead of horizontally at the bottom
+3.title needs to be generated based on input
+4.input fields separated by categories
+5.color picker has a color to the side of it
+6.material, fit occasion, wash, features, accents, location -> input boxes instead of dropdown fields
+7.add labels to the fields which don't have them
+8.when a category is selected an example image is displayed on the left (where the pop-up user stuff is)
+-->
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
@@ -93,7 +104,17 @@
               append-icon="mdi-circle"
               outlined
       ></v-select>
-
+      <v-col lg="3">
+        <v-autocomplete :items="items.colors" label="Color" v-model="selected.color" @focus="info_card = false" multiple outlined>
+          <template slot="item" slot-scope="colors">
+            <!--<v-avatar size ="22" : color="colors.item.value" class="mr-4"></v-avatar> -->
+            <span class="cb-item">{{ colors.item.title }}</span>
+          </template>
+          <template>
+            <v-avatar size="22" :color="colors.item.value" class="mr-1"><</v-avatar>
+          </template>
+        </v-autocomplete>
+      </v-col>
       <v-select
               :items="'Clean?'"
               class="product-wash"
